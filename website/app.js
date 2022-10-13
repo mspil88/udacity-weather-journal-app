@@ -40,6 +40,7 @@ const weatherData = (resJSON, feelings) => {
             temp: kelvinToCelsius(resJSON.main.temp),
             weather: resJSON.weather[0].main,
             weatherDescription: resJSON.weather[0].description,
+            place: resJSON.name,
             userResponse: feelings,
     }
 }

@@ -54,11 +54,13 @@ app.post("/", (req, res) => {
     const date = req.body.date;
     const weather = req.body.weather;
     const weatherDescription = req.body.weatherDescription;
+    const place = req.body.place;
     const userResponse = req.body.userResponse;
 
 
     data.push({date: date, temperature: temp, weather: weather, 
-               weatherDescription: weatherDescription, userResponse: userResponse});
+               weatherDescription: weatherDescription, place: place,
+               userResponse: userResponse});
 
     console.log(data);
 })
