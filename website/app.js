@@ -13,7 +13,6 @@ const contentElem = document.querySelector("#content");
 
 /* Function to GET Web API Data*/
 const getWeather = async (url) => {
-    //before calling this, ensure the right string concatenation occurs
     const response = await fetch(url) 
     try {
         const data = await response.json();
@@ -53,10 +52,10 @@ const updateFE = async() => {
     console.log(request);
     try {
         const allData = await request.json();
-        const {date, temperature, response} = allData[0];
-        dateElem.textContent = date;
-        tempElem.textContent = temperature;
-        contentElem.textContent = response;
+        const {date, temperature, userResponse} = allData[0];
+        dateElem.textContent = `Date: ${date}`;
+        tempElem.textContent = `Temperature: ${temperature}`;
+        contentElem.textContent = `Feeling: ${userResponse}`;
         return;
     } catch(err) {
         console.log(err);
