@@ -28,7 +28,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 // Cors for cross origin allowance
-
+app.use(cors())
 // Initialize the main project folder
 app.use(express.static("website"));
 // Spin up the server
@@ -46,12 +46,22 @@ app.get("/all", (req, res) => {
     res.send(HTTPCodes.OK).json(data);
 })
 
-app.post("/all", (req, res) => {
-    const temp = req.body.temperature;
+// Post Route
+
+app.post("/", (req, res) => {
+    console.log("posting to server")
+    const temp = req.body.temp;
     const date = req.body.date;
+    const weather = req.body.weather;
+    const weatherDescription = req.body.weatherDescription;
     const userResponse = req.body.userResponse;
-    data.push({temperature: temp, date: date, userResponse: userResponse});
+
+
+    data.push({date: date, temperature: temp, weather: weather, 
+               weatherDescription: weatherDescription, userResponse: userResponse});
+
+    console.log(data);
 })
 
-// Post Route
+
   
