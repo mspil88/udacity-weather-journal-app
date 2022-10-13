@@ -1,5 +1,5 @@
 // Personal API Key for OpenWeatherMap API
-const API_KEY="4747ee87360f068416cb9cc5df95bf1e";
+const API_KEY="4747ee87360f068416cb9cc5df95bf1e&units=imperial";
 const WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?zip=";
 const generateBtn = document.getElementById("generate");
 const dateElem = document.querySelector("#date");
@@ -40,7 +40,7 @@ const requestDate = () => {
 
 const weatherData = (resJSON, feelings) => {
     return {date: requestDate(),
-            temp: kelvinToCelsius(resJSON.main.temp),
+            temp: resJSON.main.temp,
             weather: resJSON.weather[0].main,
             weatherDescription: resJSON.weather[0].description,
             place: resJSON.name,
