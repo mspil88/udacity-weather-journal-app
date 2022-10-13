@@ -23,8 +23,8 @@ const getWeather = async (url) => {
 }
 
 const constructURL = (postalCode) => {
-    console.log(`${WEATHER_URL}${postalCode}&APPID=${API_KEY}`)
-    return `${WEATHER_URL}${postalCode}&APPID=${API_KEY}`
+
+    return `${WEATHER_URL}${postalCode.trim()}&APPID=${API_KEY}`
 }
 
 const kelvinToCelsius = (kelvinTemp) => {
