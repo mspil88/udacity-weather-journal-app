@@ -2,6 +2,9 @@
 const API_KEY="4747ee87360f068416cb9cc5df95bf1e";
 const WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?zip=";
 const generateBtn = document.getElementById("generate");
+const dateElem = document.querySelector("#date");
+const tempElem = document.querySelector("#temp");
+const contentElem = document.querySelector("#content");
 // Event listener to add function to existing HTML DOM element
 
 /* Function called by event listener */
@@ -45,19 +48,33 @@ const weatherData = (resJSON, feelings) => {
     }
 }
 
+const updateFE = async() => {
+    const request = await fetch("/all");
+    console.log(request);
+    try {
+        const allData = await request.json();
+        const {date, temperature, response} = allData[0];
+        dateElem.textContent = date;
+        tempElem.textContent = temperature;
+        contentElem.textContent = response;
+        return;
+    } catch(err) {
+        console.log(err);
+    }
+}
+
 generateBtn.addEventListener("click", () => {
     console.log("clicked on generate");
     const postalCode = document.querySelector("#zip").value;
     const feels = document.querySelector("#feelings").value;
 
     getWeather(constructURL(postalCode)).then((res) => {
-        console.log(res);
-        console.log(weatherData(res, feels))
         postData("/", weatherData(res, feels));
         
-    })
-
-    
+        })
+        .then((res) => {
+            updateFE();
+        })   
 })
 
 const postData = async (url, data) => {
@@ -72,16 +89,9 @@ const postData = async (url, data) => {
 
     try {
         const newData = await response.json();
-        console.log(newData);
         return newData;
     } catch(err) {
         console.log(err)
     }
 }
-
-/* Function to POST data */
-
-
-/* Function to GET Project Data */
-
 

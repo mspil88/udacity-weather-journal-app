@@ -43,7 +43,10 @@ app.listen(PORT, ()=> {
 // Callback function to complete GET '/all'
 
 app.get("/all", (req, res) => {
-    res.send(HTTPCodes.OK).json(data);
+    console.log("getting from server")
+    res.status(new HTTPCodes().OK).json(data);
+
+    
 })
 
 // Post Route
@@ -61,8 +64,6 @@ app.post("/", (req, res) => {
     data.push({date: date, temperature: temp, weather: weather, 
                weatherDescription: weatherDescription, place: place,
                userResponse: userResponse});
-
-    console.log(data);
 })
 
 
