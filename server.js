@@ -1,13 +1,14 @@
-// Setup empty JS object to act as endpoint for all routes
+// Container for the data posted from the front end
 let data = [];
 
-// Express to run server and routes
+// Dependencies and globals
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const PORT = 3000;
 
 
+// A Helper class to return HTTP Codes, i.e. 200, 400, 404
 class HTTPCodes {
     constructor() {
         this.OK = 200;
@@ -36,12 +37,7 @@ app.listen(PORT, ()=> {
     console.log(`App listening on port: ${PORT}`)
 })
 
-// Callback to debug
-
-// Initialize all route with a callback function
-
-// Callback function to complete GET '/all'
-
+//Get Route for the app
 app.get("/all", (req, res) => {
     console.log("getting from server")
     res.status(new HTTPCodes().OK).json(data);
@@ -49,7 +45,7 @@ app.get("/all", (req, res) => {
     
 })
 
-// Post Route
+// Post Route for the app
 
 app.post("/", (req, res) => {
     console.log("posting to server")
