@@ -60,6 +60,7 @@ const updateFE = async() => {
         return;
     } catch(err) {
         console.log(err);
+        dateElem.textContent = "no data avaliable!"
     }
 }
 
